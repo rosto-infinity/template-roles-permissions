@@ -9,17 +9,17 @@
 <body>
 
   <div class="container mx-auto mt-5">
-    {{-- navigation --}}
-    <a href="{{ url('roles') }}" class="bg-blue-500 text-white px-4 py-2 rounded mx-1">Roles</a>
-    <a href="{{ url('permissions') }}" class="bg-teal-500 text-white px-4 py-2 rounded mx-1">Permissions</a>
-    <a href="{{ url('users') }}" class="bg-orange-400 text-white px-4 py-2 rounded mx-1">Users</a>
+  <!-- navigation  -->
+    <a href="index.html" class="bg-blue-500 text-white px-4 py-2 rounded mx-1">Roles</a>
+    <a href="permission/index.blade.php.html" class="bg-teal-500 text-white px-4 py-2 rounded mx-1">Permissions</a>
+    <a href="user/index.blade.php.html" class="bg-orange-400 text-white px-4 py-2 rounded mx-1">Users</a>
   </div>
   <div class="container mx-auto mt-6">
     <div class="w-full">
 
-        @if (session('status'))
+        
             <div class="bg-green-500 text-white p-4 rounded mb-4">{{ session('status') }}</div>
-        @endif
+      
 
         <div class="bg-white shadow-md rounded mt-3">
            
@@ -27,18 +27,18 @@
               <h4 class="flex justify-between items-center">
                 <span class="text-2xl  text-black">Users</span>
 
-                <a href="{{ url('users/create') }}" class="bg-orange-500 text-white px-4 py-2 rounded">Add
+                <a href="user/create.blade.php.html" class="bg-orange-500 text-white px-4 py-2 rounded">Add
                   User</a>
 
               </h4>
             </div>
             <div class="p-4">
-{{-- Formulaire de recherche --}}
-<form action="{{ url('users') }}" method="GET" class="mb-4">
+ <!-- Formulaire de recherche -->
+<form action="" method="GET" class="mb-4">
   <div class="flex items-center">
-    <input type="text" name="search" placeholder="Search users..." class="border border-gray-300 rounded-md p-2 w-full" value="{{ request('search') }}">
+    <input type="text" name="search" placeholder="Search users..." class="border border-gray-300 rounded-md p-2 w-full" value="">
     <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded ml-2">Search</button>
-    <a href="{{ url('users') }}" class="bg-gray-500 text-white px-4 py-2 rounded ml-2">Refresh</a>
+    <a href="index.html" class="bg-gray-500 text-white px-4 py-2 rounded ml-2">Refresh</a>
   </div>
 </form>
                 <table class="min-w-full border-collapse border border-gray-300">
@@ -52,29 +52,43 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($users as $index =>$user)
+                        
                         <tr class="text-center {{ $index % 2 == 0 ? 'bg-gray-100' : 'bg-white' }}">
-                            <td class="border border-gray-300 px-4 py-2">{{ $user->id }}</td>
-                            <td class="border border-gray-300 px-4 py-2">{{ $user->name }}</td>
-                            <td class="border border-gray-300 px-4 py-2">{{ $user->email }}</td>
+                            <td class="border border-gray-300 px-4 py-2"> $user->id </td>
+                            <td class="border border-gray-300 px-4 py-2">$user->name </td>
+                            <td class="border border-gray-300 px-4 py-2">$user->email</td>
                             <td class="border border-gray-300 px-4 py-2">
-                                @if (!empty($user->getRoleNames()))
-                                    @foreach ($user->getRoleNames() as $rolename)
-                                        <span class="bg-blue-500 text-white px-2 py-1 rounded mx-1">{{ $rolename }}</span>
-                                    @endforeach
-                                @endif
+                             <span class="bg-blue-500 text-white px-2 py-1 rounded mx-1">Admin</span>     
                             </td>
                             <td class="border border-gray-300 px-4 py-2">
-                              @can('update user')
-                                <a href="{{ url('users/'.$user->id.'/edit') }}" class="bg-green-500 text-white px-4 py-2 rounded">Edit</a>
-                                @endcan
-
-                                @can('delete user')
-                                <a href="{{ url('users/'.$user->id.'/delete') }}" class="bg-red-500 text-white px-4 py-2 rounded mx-2">Delete</a>
-                               @endcan
+                                <a href="user/edit.blade.php.html" class="bg-green-500 text-white px-4 py-2 rounded">Edit</a>
+                                <a href="#" class="bg-red-500 text-white px-4 py-2 rounded mx-2">Delete</a>
                             </td>
-                        </tr>
-                        @endforeach
+                        </tr>  
+                        <tr class="text-center {{ $index % 2 == 0 ? 'bg-gray-100' : 'bg-white' }}">
+                            <td class="border border-gray-300 px-4 py-2"> $user->id </td>
+                            <td class="border border-gray-300 px-4 py-2">$user->name </td>
+                            <td class="border border-gray-300 px-4 py-2">$user->email</td>
+                            <td class="border border-gray-300 px-4 py-2">
+                             <span class="bg-blue-500 text-white px-2 py-1 rounded mx-1">Admin</span>     
+                            </td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <a href="user/edit.blade.php.html" class="bg-green-500 text-white px-4 py-2 rounded">Edit</a>
+                                <a href="#" class="bg-red-500 text-white px-4 py-2 rounded mx-2">Delete</a>
+                            </td>
+                        </tr>  
+                        <tr class="text-center {{ $index % 2 == 0 ? 'bg-gray-100' : 'bg-white' }}">
+                            <td class="border border-gray-300 px-4 py-2"> $user->id </td>
+                            <td class="border border-gray-300 px-4 py-2">$user->name </td>
+                            <td class="border border-gray-300 px-4 py-2">$user->email</td>
+                            <td class="border border-gray-300 px-4 py-2">
+                             <span class="bg-blue-500 text-white px-2 py-1 rounded mx-1">Admin</span>     
+                            </td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <a href="user/edit.blade.php.html" class="bg-green-500 text-white px-4 py-2 rounded">Edit</a>
+                                <a href="#" class="bg-red-500 text-white px-4 py-2 rounded mx-2">Delete</a>
+                            </td>
+                        </tr>  
                     </tbody>
                 </table>
             </div>
