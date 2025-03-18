@@ -1,70 +1,145 @@
-<x-app-layout>
-  @include('role-permission.nav-links')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/src/output.css">
+  <title>acceuil roles</title>
+</head>
+<body class="bg-gray-100">
+
+  <div class="container mx-auto mt-5">
+  <!-- navigation ok  -->
+    <a href="index.blade.php.html" class="bg-blue-500 text-white px-4 py-2 rounded mx-1">Roles</a>
+    <a href="/permission/index.blade.php.html" class="bg-teal-500 text-white px-4 py-2 rounded mx-1">Permissions</a>
+    <a href="/index.html" class="bg-orange-400 text-white px-4 py-2 rounded mx-1">Users</a>
+  </div>
+
   <div class="container mx-auto mt-6">
     <div class="row">
       <div class="col-md-12">
-        {{-- Affichage du message de statut, le cas échéant --}}
-        @if (session('status'))
+ 
+       
       <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
         {{ session('status') }}
       </div>
-    @endif
+ 
         <div class="bg-white shadow-md rounded mt-3 ">
           <div class="px-4 py-2 border-b bg-blue-200">
             <h4 class="flex justify-between items-center">
               <span class="text-2xl text-black">Roles</span>
-              {{-- Lien pour ajouter un nouveau rôle --}}
-              @can('create role')
-              <a href="{{ url('roles/create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Add Role</a>
-              @endcan
+            
+             
+              <a href="create.blade.php.html" class="bg-blue-500 text-white px-4 py-2 rounded">Add Role</a>
+            
             </h4>
           </div>
           <div class="p-4">
 
-            {{-- Tableau des rôles --}}
+           
             <table class="min-w-full border border-gray-300">
               <thead>
                 <tr>
-                  <th class="border-b">Id</th>
-                  <th class="border-b">Name</th>
-                  <th class="border-b" width="40%">Action</th>
+                  <th class="border-gray-300 border">Id</th>
+                  <th class="border-gray-300 border">Name</th>
+                  <th class="border-gray-300 border" width="40%">Action</th>
                 </tr>
               </thead>
               <tbody>
-                {{-- Boucle pour afficher chaque rôle --}}
-                @foreach ($roles as $index => $role)
+              
           <tr class="text-center mt-2 {{ $index % 2 == 0 ? 'bg-gray-100' : 'bg-white' }}">
-            <td class="border-b py-3">{{ $role->id }}</td>
-            <td class="border-b">{{ $role->name }}</td>
-            <td class="border-b">
-
-            {{-- Lien pour ajouter/éditer les permissions du rôle --}}
-            @can('give-permissions role')
-              <a href="{{ url('roles/' . $role->id . '/give-permissions') }}"
+            <td class="border-gray-300 border py-3">1</td>
+            <td class="border-gray-300 border">admin</td>
+            <td class="border-gray-300 border">
+              <a href="/role/add-permissions.blade.php.html"
                 class="bg-orange-400 text-white my-5 px-2 py-1.5 rounded">
                 Add / Edit Role Permission
               </a>
-              @endcan
-         
-            
-            {{-- Lien pour éditer le rôle --}}
-            @can('update role')
-              <a href="{{ url('roles/' . $role->id . '/edit') }}"
+              <a href="/role/add-permissions.blade.php.html"
                 class="bg-green-500 text-white ml-3 my-5 px-2 py-1.5 rounded">
                 Edit
               </a>
-           @endcan
-
-            {{-- Lien pour supprimer le rôle --}}
-            @can('delete role')
-              <a href="{{ url('roles/' . $role->id . '/delete') }}"
+              <a href="#"
                 class="bg-red-500 text-white px-2 py-1.5 rounded mx-2">
                 Delete
               </a>
-           @endcan
             </td>
           </tr>
-        @endforeach
+          <tr class="text-center mt-2 {{ $index % 2 == 0 ? 'bg-gray-100' : 'bg-white' }}">
+            <td class="border-gray-300 border py-3">2</td>
+            <td class="border-gray-300 border">super-admin</td>
+            <td class="border-gray-300 border">
+              <a href="/role/add-permissions.blade.php.html"
+                class="bg-orange-400 text-white my-5 px-2 py-1.5 rounded">
+                Add / Edit Role Permission
+              </a>
+              <a href="/role/add-permissions.blade.php.html"
+                class="bg-green-500 text-white ml-3 my-5 px-2 py-1.5 rounded">
+                Edit
+              </a>
+              <a href="#"
+                class="bg-red-500 text-white px-2 py-1.5 rounded mx-2">
+                Delete
+              </a>
+            </td>
+          </tr>
+          <tr class="text-center mt-2 {{ $index % 2 == 0 ? 'bg-gray-100' : 'bg-white' }}">
+            <td class="border-gray-300 border py-3">2</td>
+            <td class="border-gray-300 border">user</td>
+            <td class="border-gray-300 border">
+              <a href="/role/add-permissions.blade.php.html"
+                class="bg-orange-400 text-white my-5 px-2 py-1.5 rounded">
+                Add / Edit Role Permission
+              </a>
+              <a href="/role/add-permissions.blade.php.html"
+                class="bg-green-500 text-white ml-3 my-5 px-2 py-1.5 rounded">
+                Edit
+              </a>
+              <a href="#"
+                class="bg-red-500 text-white px-2 py-1.5 rounded mx-2">
+                Delete
+              </a>
+            </td>
+          </tr>
+          <tr class="text-center mt-2 {{ $index % 2 == 0 ? 'bg-gray-100' : 'bg-white' }}">
+            <td class="border-gray-300 border py-3">4</td>
+            <td class="border-gray-300 border">staff</td>
+            <td class="border-gray-300 border">
+              <a href="/role/add-permissions.blade.php.html"
+                class="bg-orange-400 text-white my-5 px-2 py-1.5 rounded">
+                Add / Edit Role Permission
+              </a>
+              <a href="/role/add-permissions.blade.php.html"
+                class="bg-green-500 text-white ml-3 my-5 px-2 py-1.5 rounded">
+                Edit
+              </a>
+              <a href="#"
+                class="bg-red-500 text-white px-2 py-1.5 rounded mx-2">
+                Delete
+              </a>
+            </td>
+          </tr>
+          <tr class="text-center mt-2 {{ $index % 2 == 0 ? 'bg-gray-100' : 'bg-white' }}">
+            <td class="border-gray-300 border py-3">5</td>
+            <td class="border-gray-300 border">developper</td>
+            <td class="border-gray-300 border">
+              <a href="/role/add-permissions.blade.php.html"
+                class="bg-orange-400 text-white my-5 px-2 py-1.5 rounded">
+                Add / Edit Role Permission
+              </a>
+              <a href="/role/add-permissions.blade.php.html"
+                class="bg-green-500 text-white ml-3 my-5 px-2 py-1.5 rounded">
+                Edit
+              </a>
+              <a href="#"
+                class="bg-red-500 text-white px-2 py-1.5 rounded mx-2">
+                Delete
+              </a>
+            </td>
+          </tr>
+
+
+
               </tbody>
             </table>
 
@@ -73,4 +148,5 @@
       </div>
     </div>
   </div>
-</x-app-layout>
+</body>
+</html>
